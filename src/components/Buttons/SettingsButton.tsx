@@ -1,4 +1,5 @@
 import { Popover, Transition } from "@headlessui/react";
+import { getUsers } from "app/api/users";
 import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,8 @@ import { BiLogOut, BiUser } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 
 export default function SettingsButton() {
-    const userName = "A-SAFE DIGITAL";
+    const data = getUsers();
+    const userName = data[0]?.name;
 
     const userInitials = userName
         .split(" ")
@@ -45,7 +47,7 @@ export default function SettingsButton() {
                                                     alt="user-logo"
                                                     width={50}
                                                     height={50}
-                                                    src="/images/a-safe-logo.png"
+                                                    src={data[0]?.img}
                                                 />
                                             </div>
                                         </div>
