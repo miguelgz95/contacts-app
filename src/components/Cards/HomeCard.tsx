@@ -14,27 +14,36 @@ export default function HomeCard({
     href,
     icon,
     title,
-    bgColorIcon = "bg-blue-300",
+    bgColorIcon,
     description,
 }: HomeCardProps) {
     return (
         <Link href={href}>
-            <div className="w-full flex items-center space-x-3 md:w-fit rounded-md px-4 py-1.5 bg-white border border-slate-200 hover:opacity-50 transition">
+            <button
+                type="button"
+                className="w-full flex items-center space-x-3 md:w-fit rounded-md px-4 py-2 bg-white border border-slate-200 hover:opacity-50 transition"
+            >
                 <div
                     className={`w-12 h-10 flex justify-center items-center rounded-full ${bgColorIcon}`}
                 >
                     {icon}
                 </div>
                 <div className="w-full">
-                    <p className="tracking-wide text-lg font-medium text-primary">
+                    <p className="text-start tracking-wide text-md font-medium text-primary">
                         {title}
                     </p>
-                    <p className="tracking-wider text-sm">{description}</p>
+                    <p className="text-start tracking-wider text-sm">
+                        {description}
+                    </p>
                 </div>
                 <div className="flex justify-center items-center rounded-full">
                     <TbArrowRight color="gray" size={25} />
                 </div>
-            </div>
+            </button>
         </Link>
     );
 }
+
+HomeCard.defaultProps = {
+    bgColorIcon: "bg-blue-300",
+};

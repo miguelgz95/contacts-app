@@ -1,5 +1,4 @@
 import SettingsButton from "@components/Buttons/SettingsButton";
-import { navigationItems } from "@constants/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,23 +15,7 @@ export default function Navbar() {
                     />
                 </Link>
             </div>
-            {navigationItems.map(({ id, title, href, icon }) => (
-                <button key={id} type="button">
-                    <a
-                        href={href}
-                        className="w-full h-full flex items-center rounded-lg px-5 p-2 hover:opacity-50 transition"
-                    >
-                        <p className="text-lg text-zinc-900 dark:text-white">
-                            {icon}
-                        </p>
-                        <p className="text-slate-500 hover:text-[#293C8E] pl-3 whitespace-nowrap">
-                            {title}
-                        </p>
-                    </a>
-                    {/* )} */}
-                </button>
-            ))}
-            <div className="hidden md:flex md:ml-3">
+            <div>
                 <SettingsButton />
             </div>
         </div>

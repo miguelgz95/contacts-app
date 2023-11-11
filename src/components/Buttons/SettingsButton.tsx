@@ -17,7 +17,7 @@ export default function SettingsButton() {
         .slice(0, 2);
 
     return (
-        <div className="hidden sm:flex align-center  z-50 focus-visible:border-none">
+        <div className="flex align-center z-50 focus-visible:border-none">
             <Popover className="relative focus-visible:border-none">
                 {({ open }) => (
                     <>

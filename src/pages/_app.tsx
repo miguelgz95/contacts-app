@@ -1,3 +1,4 @@
+import { ContactsProvider } from "@hooks/ContactsContext";
 import { AppPropsWithLayout } from "../interfaces/page";
 import "../theme/styles/index.css";
 import { Poppins } from "@next/font/google";
@@ -15,7 +16,9 @@ function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     return (
         <main className={`${poppins.variable} font-sans`}>
             <SessionProvider session={pageProps.session}>
-                {getLayout(<Component {...pageProps} />)}
+                <ContactsProvider>
+                    {getLayout(<Component {...pageProps} />)}
+                </ContactsProvider>
             </SessionProvider>
         </main>
     );
