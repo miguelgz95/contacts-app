@@ -26,6 +26,9 @@ IMPORTANT!: Once the application is started, you will need to authenticate with 
 openssl rand -base64 32
 ```
 
+<img width="1120" alt="Captura de pantalla 2023-11-13 a las 0 06 57" src="https://github.com/miguelgz95/contacts-app/assets/90695378/bdb82cc2-2b5b-4557-ac2d-5911d712e13f">
+
+
 To start the application:
 ```
 npm run dev
