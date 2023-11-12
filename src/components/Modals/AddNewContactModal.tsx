@@ -10,6 +10,7 @@ import ContactForm from "@components/Forms/ContactForm";
 import useContacts from "@hooks/useContacts.";
 import { Poppins } from "@next/font/google";
 import { Contact } from "@interfaces/contact";
+import { BiSolidCheckCircle } from "react-icons/bi";
 
 export const poppins = Poppins({
     weight: ["400", "500", "600", "800"],
@@ -56,8 +57,9 @@ export default function AddNewContactModal({
         setLoading(true);
         createContact(values);
         toast.success(
-            <div className="tracking widest font-semibold z-50">
-                ¡Contacto creado!
+            <div className="flex items-center tracking widest font-semibold z-50">
+                <BiSolidCheckCircle size={25} />
+                <p className="ml-3">¡Contacto creado!</p>
             </div>
         );
         setLoading(false);
@@ -68,8 +70,9 @@ export default function AddNewContactModal({
         setLoading(true);
         updateContact(contactData, values);
         toast.success(
-            <div className="tracking widest font-semibold z-50">
-                ¡Contacto editado!
+            <div className="flex items-center tracking widest font-semibold z-50">
+                <BiSolidCheckCircle size={25} />
+                <p className="ml-3">¡Contacto editado!</p>
             </div>
         );
         setLoading(false);

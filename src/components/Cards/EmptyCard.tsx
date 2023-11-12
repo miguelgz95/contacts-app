@@ -10,7 +10,13 @@ export default function EmptyCard({ src, title, text }: EmptyCardProps) {
     return (
         <div className="w-full flex-col justify-center">
             <div className=" flex justify-center">
-                <Image alt="empty" src={src} width={180} height={180} />
+                <Image
+                    priority
+                    alt="empty"
+                    src={src}
+                    width={180}
+                    height={180}
+                />
             </div>
             <p className="mt-[-10px] text-center font-medium tracking-wider text-zinc-600 ">
                 {title}

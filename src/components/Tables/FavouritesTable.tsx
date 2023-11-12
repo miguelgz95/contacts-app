@@ -131,7 +131,7 @@ export default function FavouritesTable({
                 <EmptyCard
                     src="/images/empty-data.png"
                     title="No hay favoritos"
-                    text="Prueba a añadir uno desde el listado de contactos"
+                    text="Pruebe a añadir uno desde el listado de contactos"
                 />
             )}
 

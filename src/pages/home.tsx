@@ -7,9 +7,8 @@ import FavouritesTable from "@components/Tables/FavouritesTable";
 import { TABLE_TYPES } from "@constants/tableTypes";
 import useContacts from "@hooks/useContacts.";
 import Layout from "Layouts/Layout";
-import { getUsers } from "app/api/users";
 import { NextPage } from "next";
-import { useSearchParams } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BiSolidStar, BiUser } from "react-icons/bi";
@@ -17,14 +16,15 @@ import { BiSolidStar, BiUser } from "react-icons/bi";
 const Home: NextPage = () => {
     const router = useRouter();
 
+    const session = useSession();
+    const userName = session?.data?.user?.name || "";
+
     const { fetchContacts, getContacts, getContactByEmail, deleteContact } =
         useContacts();
     const addToFavourites = useContacts().addToFavourites;
     const deleteContactFromFavourites =
         useContacts().deleteContactFromFavourites;
     const favourites = useContacts().getFavourites();
-
-    const data = getUsers();
 
     const [filter, setFilter] = useState<string>("");
     const [openContactModal, setOpenContactModal] = useState<boolean>(false);
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
                                 Hola,
                             </p>
                             <p className="text-slate-500 font-medium tracking-wider">
-                                {data[0].name}
+                                {userName}
                             </p>
                             <p className="wave text-xl mt-[-2.5px]"> 👋</p>
                         </div>
@@ -155,6 +155,7 @@ const Home: NextPage = () => {
                                     setPage={setPage}
                                     editContact={editContact}
                                     removeContact={removeContact}
+                                    favourites={favourites}
                                     addToFavourites={addToFavourites}
                                 />
                             )}

@@ -7,6 +7,7 @@ import { TbTrash } from "react-icons/tb";
 
 interface ContactsTableProps {
     contacts: Contact[];
+    favourites: Contact[];
     page: number;
     setPage: (value: number) => void;
     removeContact: (value: string) => void;
@@ -16,6 +17,7 @@ interface ContactsTableProps {
 
 export default function ContactsTable({
     contacts,
+    favourites,
     page,
     setPage,
     removeContact,
@@ -178,7 +180,7 @@ export default function ContactsTable({
                 <EmptyCard
                     src="/images/empty-data.png"
                     title="No hay contactos"
-                    text="Pruebe a crear uno nuevo"
+                    text="Pruebe a buscar o añadir uno nuevo"
                 />
             )}
 

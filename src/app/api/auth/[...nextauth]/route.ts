@@ -37,6 +37,7 @@ const handler = NextAuth({
                         id: "1",
                         name: "A-SAFE DIGITAL",
                         password: "password",
+                        img: "/images/a-safe-logo.png",
                     };
 
                     if (

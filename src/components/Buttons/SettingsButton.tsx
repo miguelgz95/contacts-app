@@ -1,15 +1,13 @@
 import { Popover, Transition } from "@headlessui/react";
-import { getUsers } from "app/api/users";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import Link from "next/link";
 import { Fragment } from "react";
 import { BiLogOut, BiUser } from "react-icons/bi";
-import { FiSettings } from "react-icons/fi";
 
 export default function SettingsButton() {
-    const data = getUsers();
-    const userName = data[0]?.name;
+    const session = useSession();
+
+    const userName = session?.data?.user?.name || "";
 
     const userInitials = userName
         .split(" ")
@@ -23,8 +21,8 @@ export default function SettingsButton() {
                     <>
                         <Popover.Button>
                             {" "}
-                            <div className="relative w-[31px] h-[31px] rounded-full bg-[#2CB490] focus:border-none">
-                                <p className="inline-block object-cover text-white font-medium ml-0.5 mt-[8px] text-xs tracking-widest">
+                            <div className="relative w-[33px] h-[33px] rounded-full bg-[#2CB490] focus:border-none">
+                                <p className="inline-block object-cover text-white font-medium ml-0.5 mt-[9px] text-xs tracking-widest">
                                     {userInitials}
                                 </p>
                             </div>
@@ -44,10 +42,11 @@ export default function SettingsButton() {
                                         <div className="flex justify-center items-center h-[85px] bg-[#EBF5FF] mt-3 rounded-md">
                                             <div className="w-full flex justify-center">
                                                 <Image
+                                                    priority
                                                     alt="user-logo"
                                                     width={50}
                                                     height={50}
-                                                    src={data[0]?.img}
+                                                    src="/images/a-safe-logo.png"
                                                 />
                                             </div>
                                         </div>
