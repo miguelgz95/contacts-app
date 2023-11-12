@@ -9,14 +9,18 @@ import useContacts from "@hooks/useContacts.";
 import Layout from "Layouts/Layout";
 import { getUsers } from "app/api/users";
 import { NextPage } from "next";
+import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BiSolidStar, BiUser } from "react-icons/bi";
 
 const Home: NextPage = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const search = searchParams?.get("id");
 
-    const { fetchContacts, getContacts, deleteContact } = useContacts();
+    const { fetchContacts, getContacts, getContactByEmail, deleteContact } =
+        useContacts();
     const addToFavourites = useContacts().addToFavourites;
     const deleteContactFromFavourites =
         useContacts().deleteContactFromFavourites;
@@ -27,6 +31,7 @@ const Home: NextPage = () => {
     const [filter, setFilter] = useState<string>("");
     const [openContactModal, setOpenContactModal] = useState<boolean>(false);
     const [page, setPage] = useState<number>(0);
+    const [email, setEmail] = useState<string>("");
     const [selectedTableType, setSelectedTableType] = useState<
         (typeof TABLE_TYPES)[keyof typeof TABLE_TYPES]
     >(TABLE_TYPES.CONTACTS);
@@ -44,16 +49,27 @@ const Home: NextPage = () => {
 
     const contacts = getContacts(page, filter);
 
+    function editContact(email: string) {
+        setEmail(email);
+    }
+
     function removeContact(email: string) {
         deleteContact(email);
     }
 
     const handleNewContactModalClose = () => {
         setOpenContactModal(false);
+        setEmail("");
         router.push({
             pathname: window.location.pathname,
         });
     };
+
+    let contact = null;
+
+    if (email as string) {
+        contact = getContactByEmail(email);
+    }
 
     useEffect(() => {
         if (!contacts.length) {
@@ -62,12 +78,10 @@ const Home: NextPage = () => {
     }, []);
 
     useEffect(() => {
-        if (router.asPath === "/home?add") {
+        if (router.asPath === "/home?add" || email) {
             setOpenContactModal(true);
         }
-    }, [router]);
-
-    console.log(contacts);
+    }, [router, email]);
 
     return (
         <div>
@@ -134,17 +148,16 @@ const Home: NextPage = () => {
                             </div>
                             {isSelectedContactsTable && (
                                 <ContactsTable
-                                    key={contacts.email}
                                     contacts={contacts}
                                     page={page}
                                     setPage={setPage}
+                                    editContact={editContact}
                                     removeContact={removeContact}
                                     addToFavourites={addToFavourites}
                                 />
                             )}
                             {isSelectedFavouritesTable && (
                                 <FavouritesTable
-                                    key={favourites.email}
                                     contacts={favourites}
                                     page={page}
                                     setPage={setPage}
@@ -182,6 +195,7 @@ const Home: NextPage = () => {
                 onClose={handleNewContactModalClose}
                 setIsOpen={setOpenContactModal}
                 isOpen={openContactModal}
+                contactData={contact}
             />
         </div>
     );

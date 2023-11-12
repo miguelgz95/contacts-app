@@ -2,24 +2,24 @@ import EmptyCard from "@components/Cards/EmptyCard";
 import { Menu, Transition } from "@headlessui/react";
 import { Contact } from "@interfaces/contact";
 import { Fragment } from "react";
-import { BiDotsHorizontal, BiStar } from "react-icons/bi";
+import { BiDotsHorizontal, BiEdit, BiStar } from "react-icons/bi";
 import { TbTrash } from "react-icons/tb";
 
 interface ContactsTableProps {
-    key: string;
     contacts: Contact[];
     page: number;
     setPage: (value: number) => void;
     removeContact: (value: string) => void;
+    editContact: (value: string) => void;
     addToFavourites: (value: Contact) => void;
 }
 
 export default function ContactsTable({
-    key,
     contacts,
     page,
     setPage,
     removeContact,
+    editContact,
     addToFavourites,
 }: ContactsTableProps) {
     const nextPage = () => {
@@ -51,7 +51,7 @@ export default function ContactsTable({
                         </thead>
 
                         <tbody>
-                            {contacts.map((contact: Contact) => (
+                            {contacts.map((contact: Contact, key) => (
                                 <tr key={key}>
                                     <td className="px-3 py-2 border-t text-sm border-slate-200 bg-white text-md text-gray-500 tracking-wider not-italic dark:bg-[#222835] dark:border-gray-700">
                                         <div className="flex-shrink-0 w-10 h-10">
@@ -97,6 +97,28 @@ export default function ContactsTable({
                                                 leaveTo="transform opacity-0 scale-95"
                                             >
                                                 <Menu.Items className="absolute mt-0.5 w-21 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                                    <Menu.Item>
+                                                        {({ active }) => (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() =>
+                                                                    editContact(
+                                                                        contact.email
+                                                                    )
+                                                                }
+                                                                className="
+                                                                         text-gray-700 dark:bg-[#222835] dark:text-white dark:border dark:border-gray-700
+                                                                group flex w-full items-center rounded-md px-5 py-1 text-sm hover:opacity-50 transition"
+                                                            >
+                                                                <BiEdit
+                                                                    size={16}
+                                                                />
+                                                                <p className="ml-3 pt-0.5 tracking-wider">
+                                                                    Editar
+                                                                </p>
+                                                            </button>
+                                                        )}
+                                                    </Menu.Item>
                                                     <Menu.Item>
                                                         {({ active }) => (
                                                             <button

@@ -1,9 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
-import Image from "next/image";
 import { Dispatch, Fragment, useEffect, useState } from "react";
 import { Toaster, toast } from "sonner";
 import Spinner from "@components/Spinners/Spinner";
-
 import { HiArrowNarrowLeft } from "react-icons/hi";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -11,6 +9,7 @@ import createContactSchema from "@schemas/createContact";
 import ContactForm from "@components/Forms/ContactForm";
 import useContacts from "@hooks/useContacts.";
 import { Poppins } from "@next/font/google";
+import { Contact } from "@interfaces/contact";
 
 export const poppins = Poppins({
     weight: ["400", "500", "600", "800"],
@@ -22,6 +21,7 @@ interface AddNewContactModalProps {
     setIsOpen: Dispatch<boolean>;
     isOpen: boolean;
     onClose?: () => void;
+    contactData: Contact;
 }
 
 export default function AddNewContactModal({
@@ -30,16 +30,13 @@ export default function AddNewContactModal({
     },
     setIsOpen,
     isOpen,
+    contactData,
 }: AddNewContactModalProps) {
-    const { getContact, updateContact, createContact } = useContacts();
+    const { updateContact, createContact } = useContacts();
 
     const {
         handleSubmit: handleSubmitContact,
         control,
-        register,
-        watch,
-        setError,
-        setValue,
         formState: { errors: formErrors },
         reset,
     } = useForm({
@@ -53,9 +50,7 @@ export default function AddNewContactModal({
         },
     });
 
-    console.log(watch("image"));
-
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     const onSubmitContactForm = async (values: any) => {
         setLoading(true);
@@ -69,11 +64,34 @@ export default function AddNewContactModal({
         setIsOpen(false);
     };
 
+    const onSubmitUpdateContact = async (values: any) => {
+        setLoading(true);
+        updateContact(contactData, values);
+        toast.success(
+            <div className="tracking widest font-semibold z-50">
+                ¡Contacto editado!
+            </div>
+        );
+        setLoading(false);
+        onClose();
+    };
+
     useEffect(() => {
         return () => {
             reset({});
         };
     }, [isOpen]);
+
+    useEffect(() => {
+        if (contactData)
+            reset({
+                image: contactData.picture.thumbnail || "",
+                firstName: contactData.name.first || "",
+                lastName: contactData.name.last || "",
+                email: contactData.email || "",
+                phone: contactData.phone || "",
+            });
+    }, [contactData, reset]);
 
     return (
         <>
@@ -111,7 +129,7 @@ export default function AddNewContactModal({
                                 >
                                     <Dialog.Panel className="w-full md:max-w-xl rounded-lg bg-white px-3 pt-3.5 pb-3.5">
                                         <>
-                                            <div className="w-full bg-white px-4 dark:bg-[#222835]">
+                                            <div className="w-full bg-white px-4">
                                                 <form
                                                     id="newContactForm"
                                                     className="w-full"
@@ -133,10 +151,12 @@ export default function AddNewContactModal({
                                                             />
                                                         </button>
                                                         <p className="text-xl font-medium tracking-wide text-zinc-800 ml-2.5">
-                                                            Crear contacto
+                                                            {contactData
+                                                                ? "Editar contacto"
+                                                                : "Crear contacto"}
                                                         </p>
                                                     </div>
-                                                    <div className="border-t border-slate-200 dark:border-gray-500" />
+                                                    <div className="border-t border-slate-200" />
                                                     <div className="w-full flex flex-col md:flex-row justify-start mt-3 mb-4">
                                                         <ContactForm
                                                             control={control}
@@ -144,25 +164,29 @@ export default function AddNewContactModal({
                                                         />
                                                     </div>
 
-                                                    <div className="w-full space-x-3 flex justify-between pt-2.5">
-                                                        <button
-                                                            type="button"
-                                                            onClick={() =>
-                                                                reset()
-                                                            }
-                                                            form="newContactForm"
-                                                            className="w-fit flex justify-center items-center border py-1 px-4 rounded-lg tracking-wider hover:opacity-50 transition"
-                                                        >
-                                                            <p className="text-gray-500 font-medium">
-                                                                Limpiar
-                                                            </p>
-                                                        </button>
+                                                    <div className="w-full space-x-3 flex justify-end pt-2.5">
+                                                        {!contactData && (
+                                                            <button
+                                                                type="button"
+                                                                onClick={() =>
+                                                                    reset()
+                                                                }
+                                                                form="newContactForm"
+                                                                className="w-fit flex justify-center items-center border py-1 px-4 rounded-lg tracking-wider hover:opacity-50 transition"
+                                                            >
+                                                                <p className="text-gray-500 font-medium">
+                                                                    Limpiar
+                                                                </p>
+                                                            </button>
+                                                        )}
                                                         <button
                                                             onClick={handleSubmitContact(
-                                                                onSubmitContactForm
+                                                                contactData
+                                                                    ? onSubmitUpdateContact
+                                                                    : onSubmitContactForm
                                                             )}
                                                             type="submit"
-                                                            className={`w-fit px-9 bg-primary text-white rounded-lg tracking-wider hover:opacity-50 transition font-medium ${
+                                                            className={`w-fit px-9 py-1 bg-primary text-white rounded-lg tracking-wider hover:opacity-50 transition font-medium ${
                                                                 loading &&
                                                                 "cursor-not-allowed pt-1 opacity-50"
                                                             }`}

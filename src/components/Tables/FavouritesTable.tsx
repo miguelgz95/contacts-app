@@ -6,7 +6,6 @@ import { BiDotsHorizontal } from "react-icons/bi";
 import { TbTrash } from "react-icons/tb";
 
 interface FavouritesTableProps {
-    key: string;
     contacts: Contact[];
     page: number;
     setPage: (value: number) => void;
@@ -14,7 +13,6 @@ interface FavouritesTableProps {
 }
 
 export default function FavouritesTable({
-    key,
     contacts,
     page,
     setPage,
@@ -49,7 +47,7 @@ export default function FavouritesTable({
                         </thead>
 
                         <tbody>
-                            {contacts.map((contact: Contact) => (
+                            {contacts.map((contact: Contact, key) => (
                                 <tr key={key}>
                                     <td className="px-3 py-2 border-t text-sm border-slate-200 bg-white text-md text-gray-500 tracking-wider not-italic dark:bg-[#222835] dark:border-gray-700">
                                         <div className="flex-shrink-0 w-10 h-10">
@@ -133,7 +131,7 @@ export default function FavouritesTable({
                 <EmptyCard
                     src="/images/empty-data.png"
                     title="No hay favoritos"
-                    text=""
+                    text="Prueba a añadir uno desde el listado de contactos"
                 />
             )}
 

@@ -1,7 +1,3 @@
-import useContacts from "@hooks/useContacts.";
-import React, { useState } from "react";
-import { Controller } from "react-hook-form";
-
 interface ContactsFilterProps {
     filter: string;
     setFilter: (value: string) => void;

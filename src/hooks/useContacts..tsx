@@ -15,7 +15,6 @@ function useContacts() {
             fetch(url)
                 .then(result => result.json())
                 .then(data => {
-                    console.log(data.results);
                     setState((state: any) => ({
                         ...state,
                         contacts: data.results,
@@ -26,8 +25,7 @@ function useContacts() {
 
     function getContacts(page: number, filter: string) {
         let contactList = [];
-        console.log(filter);
-        console.log(page);
+
         if (!filter.length || !filter || filter == null) {
             contactList = state.contacts;
         } else {
@@ -41,8 +39,8 @@ function useContacts() {
                 }
             );
         }
+
         //return contactList;
-        console.log(state.contacts);
         if (contactList.length) {
             return contactList.slice(page * 10, page * 10 + 10);
         } else {
@@ -50,7 +48,7 @@ function useContacts() {
         }
     }
 
-    function getContact(email: string) {
+    function getContactByEmail(email: string) {
         return state.contacts.find(
             (contact: Contact) => contact.email == email
         );
@@ -71,14 +69,14 @@ function useContacts() {
             firstName: string;
             lastName: string;
             email: string;
-            telefono: string;
+            phone: string;
             image: string;
         }
     ) {
         contact.name.first = values.firstName;
         contact.name.last = values.lastName;
         contact.email = values.email;
-        contact.phone = values.telefono;
+        contact.phone = values.phone;
         contact.picture.thumbnail = values.image;
 
         const newContacts = state.contacts.map((item: { email: string }) => {
@@ -88,7 +86,7 @@ function useContacts() {
             return item;
         });
 
-        setState((state: any) => ({ ...state, contacts: newContacts }));
+        setState((state: any) => ({ contacts: newContacts, ...state }));
 
         navigate.push("/home");
     }
@@ -114,7 +112,7 @@ function useContacts() {
 
         setState((state: { contacts: any }) => ({
             ...state,
-            contacts: [...state.contacts, newContact],
+            contacts: [newContact, ...state.contacts],
         }));
 
         navigate.push("/home");
@@ -148,7 +146,7 @@ function useContacts() {
         getContacts,
         fetchContacts,
         deleteContact,
-        getContact,
+        getContactByEmail,
         updateContact,
         createContact,
         getFavourites,
