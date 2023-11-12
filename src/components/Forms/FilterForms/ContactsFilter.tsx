@@ -12,7 +12,7 @@ export default function ContactsFilter({
     setFilter,
 }: ContactsFilterProps) {
     return (
-        <div className="px-2">
+        <div className="px-2 mb-1">
             <label
                 htmlFor="contact"
                 className="text-zinc-600 text-sm tracking-wider font-medium dark:text-white"

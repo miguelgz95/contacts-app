@@ -9,12 +9,16 @@ interface IProps {
     title?: string;
     children: ReactNode;
     handleChangeSelectedTableType: (value: any) => void;
+    isSelectedFavouritesTable: boolean;
+    isSelectedContactsTable: boolean;
 }
 
 export const Collapsible = ({
     title,
     children,
     handleChangeSelectedTableType,
+    isSelectedContactsTable,
+    isSelectedFavouritesTable,
 }: IProps) => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -31,8 +35,10 @@ export const Collapsible = ({
                             {title}
                         </p>
                         <div className="flex items-center">
-                            <div className=" mr-3">
+                            <div>
                                 <ShortCutButton
+                                    className="rounded-l-md"
+                                    selected={isSelectedContactsTable}
                                     title="Contactos"
                                     handleChange={() =>
                                         handleChangeSelectedTableType(
@@ -42,6 +48,8 @@ export const Collapsible = ({
                                 />
                             </div>
                             <ShortCutButton
+                                className="rounded-r-md"
+                                selected={isSelectedFavouritesTable}
                                 title="Favoritos"
                                 handleChange={() =>
                                     handleChangeSelectedTableType(

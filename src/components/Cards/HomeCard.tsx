@@ -8,6 +8,7 @@ interface HomeCardProps {
     bgColorIcon?: string;
     description: string;
     icon: React.ReactNode;
+    handleChange?: (value: any) => void;
 }
 
 export default function HomeCard({
@@ -16,11 +17,13 @@ export default function HomeCard({
     title,
     bgColorIcon,
     description,
+    handleChange,
 }: HomeCardProps) {
     return (
         <Link href={href}>
             <button
                 type="button"
+                onClick={handleChange}
                 className="w-full flex items-center space-x-3 md:w-fit rounded-md px-4 py-2 bg-white border border-slate-200 hover:opacity-50 transition"
             >
                 <div

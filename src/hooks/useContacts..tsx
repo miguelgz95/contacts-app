@@ -72,7 +72,7 @@ function useContacts() {
             lastName: string;
             email: string;
             telefono: string;
-            image: any;
+            image: string;
         }
     ) {
         contact.name.first = values.firstName;
@@ -94,11 +94,11 @@ function useContacts() {
     }
 
     function createContact(values: {
-        firstName: any;
-        lastName: any;
-        email: any;
-        telefono: any;
-        image: any;
+        firstName: string;
+        lastName: string;
+        email: string;
+        phone: string;
+        image: string;
     }) {
         const newContact = {
             name: {
@@ -106,7 +106,7 @@ function useContacts() {
                 last: values.lastName,
             },
             email: values.email,
-            phone: values.telefono,
+            phone: values.phone,
             picture: {
                 thumbnail: values.image,
             },
