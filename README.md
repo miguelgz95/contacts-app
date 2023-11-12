@@ -6,7 +6,7 @@
 
 ## Description 📋
 
-_Front-end project using Random User Generator API. You can visualize, view the detail of each contact, create a new one, edit, delete, and save it to favorites._
+_Front-end project using Random User Generator API. You can visualize, view the detail of each contact, create a new one, edit, delete, and save it to favourites._
 
 
 ### To launch Contacts App 🚀
