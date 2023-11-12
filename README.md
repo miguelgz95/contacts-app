@@ -32,6 +32,8 @@ _Nextjs 13_
 
 _TypeScript_
 
+_NextAuth_
+
 _React Hook Form_
 
 _Tailwindcss_
