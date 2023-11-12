@@ -35,7 +35,7 @@ const handler = NextAuth({
                 try {
                     const user = {
                         id: "1",
-                        name: "Miguel",
+                        name: "A-SAFE DIGITAL",
                         password: "password",
                     };
 

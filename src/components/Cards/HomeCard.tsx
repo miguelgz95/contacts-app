@@ -24,7 +24,7 @@ export default function HomeCard({
             <button
                 type="button"
                 onClick={handleChange}
-                className="w-full flex items-center space-x-3 md:w-fit rounded-md px-4 py-2 bg-white border border-slate-200 hover:opacity-50 transition"
+                className="w-full flex items-center space-x-3 md:w-fit rounded-lg px-4 py-2 bg-white border border-slate-200 hover:opacity-50 transition"
             >
                 <div
                     className={`w-12 h-10 flex justify-center items-center rounded-full ${bgColorIcon}`}

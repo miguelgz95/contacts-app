@@ -16,8 +16,6 @@ import { BiSolidStar, BiUser } from "react-icons/bi";
 
 const Home: NextPage = () => {
     const router = useRouter();
-    const searchParams = useSearchParams();
-    const search = searchParams?.get("id");
 
     const { fetchContacts, getContacts, getContactByEmail, deleteContact } =
         useContacts();
@@ -87,12 +85,12 @@ const Home: NextPage = () => {
         <div>
             <Layout>
                 <div className="w-full mt-3.5 mb-10">
-                    <div className="w-full md:w-fit rounded-md px-4 py-1.5 bg-white border border-slate-200">
+                    <div className="w-full md:w-fit rounded-lg px-4 py-1.5 bg-white border border-slate-200">
                         <div className="w-full flex items-center space-x-2">
                             <p className="text-zinc-900 text-lg font-medium tracking-wider">
                                 Hola,
                             </p>
-                            <p className="text-slate-400 font-medium tracking-wider">
+                            <p className="text-slate-500 font-medium tracking-wider">
                                 {data[0].name}
                             </p>
                             <p className="wave text-xl mt-[-2.5px]"> 👋</p>
@@ -126,10 +124,14 @@ const Home: NextPage = () => {
                         </div>
                     </div>
                     <div className="w-full mt-2.5">
-                        <div className="w-full mt-2.5 px-2 pt-2 border border-slate-200 bg-white overflow-x-auto rounded-md">
+                        <div className="w-full mt-2.5 px-2 pt-2 border border-slate-200 bg-white overflow-x-auto rounded-lg">
                             <div className="flex mt-8">
                                 <Collapsible
-                                    title="Lista de contactos"
+                                    title={
+                                        isSelectedContactsTable
+                                            ? "Lista de contactos"
+                                            : "Lista de favoritos"
+                                    }
                                     handleChangeSelectedTableType={
                                         handleChangeSelectedTableType
                                     }
