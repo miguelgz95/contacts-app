@@ -39,10 +39,14 @@ Go to the browser and access the application: http://localhost:3000/
 
 Finally, enter the following credentials to log in:
 
-_Username: A-SAFE DIGITAL_
-
-_Password: password_
-
+Username:
+```
+A-SAFE DIGITAL
+```
+Password:
+```
+password
+```
 
 ## Technologies 🔧
 
