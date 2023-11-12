@@ -27,7 +27,7 @@ openssl rand -base64 32
 ```
 Then copy and paste the generated code into the .env.local file as shown in the screenshot:
 
-<img width="1120" alt="Captura de pantalla 2023-11-13 a las 0 06 57" src="https://github.com/miguelgz95/contacts-app/assets/90695378/bdb82cc2-2b5b-4557-ac2d-5911d712e13f">
+<img width="1017" alt="Captura de pantalla 2023-11-13 a las 0 11 25" src="https://github.com/miguelgz95/contacts-app/assets/90695378/fffed1e8-a96a-4310-87e6-37802373c56c">
 
 
 To start the application:
