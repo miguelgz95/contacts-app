@@ -13,17 +13,17 @@ _Front-end project using Random User Generator API. You can visualize, view the 
 
 Get a clone from the repository: 
 ```
-git clone https://github.com/miguelgz95/contacts-app.git_
+git clone https://github.com/miguelgz95/contacts-app.git
 ```
 
 In local, access the project and type in the terminal: 
 ```
-npm install_
+npm install
 ```
 
 To start the application:
 ```
-npm run dev_
+npm run dev
 ```
 
 Go to the browser and access the application: http://localhost:3000/
