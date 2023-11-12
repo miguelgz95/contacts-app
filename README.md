@@ -11,24 +11,24 @@ _Front-end project using Random User Generator API. You can visualize, view the 
 
 ### To launch Contacts App 🚀
 
-_Get a clone from the repository: 
+Get a clone from the repository: 
 ```
 git clone https://github.com/miguelgz95/contacts-app.git_
 ```
 
-_In local, access the project and type in the terminal: 
+In local, access the project and type in the terminal: 
 ```
 npm install_
 ```
 
-_To start the application:
+To start the application:
 ```
 npm run dev_
 ```
 
-_Go to the browser and access the application: http://localhost:3000/_
+Go to the browser and access the application: http://localhost:3000/
 
-_Finally, enter the following credentials to log in:_
+Finally, enter the following credentials to log in:
 
 _Username: A-SAFE DIGITAL_
 
