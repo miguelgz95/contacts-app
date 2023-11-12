@@ -63,9 +63,9 @@ _Tailwindcss_
 
 ## Some screenshots  
 
-<img width="1440" alt="Captura de pantalla 2023-11-12 a las 18 59 05" src="https://github.com/miguelgz95/contacts-app/assets/90695378/09bed92e-d4ef-4976-8f26-49e7bda48db7">
 <img width="1440" alt="Captura de pantalla 2023-11-12 a las 18 59 23" src="https://github.com/miguelgz95/contacts-app/assets/90695378/0ea24277-e808-46f6-8966-90673693ea0e">
 <img width="1440" alt="Captura de pantalla 2023-11-12 a las 18 58 31" src="https://github.com/miguelgz95/contacts-app/assets/90695378/b803266f-bfc5-4de7-8549-abbf01c24ccb">
+<img width="1440" alt="Captura de pantalla 2023-11-13 a las 0 23 44" src="https://github.com/miguelgz95/contacts-app/assets/90695378/24da4e12-90aa-4f7a-be4b-f203e191d5a2">
 <img width="1440" alt="Captura de pantalla 2023-11-12 a las 18 57 52" src="https://github.com/miguelgz95/contacts-app/assets/90695378/9c778470-e47e-41de-9633-3661e7c8f80d">
 <img width="296" alt="Captura de pantalla 2023-11-12 a las 19 08 02" src="https://github.com/miguelgz95/contacts-app/assets/90695378/38462b04-facf-4b6f-b3ea-ddc466e259af">
 <img width="296" alt="Captura de pantalla 2023-11-12 a las 19 07 44" src="https://github.com/miguelgz95/contacts-app/assets/90695378/3a66c5b4-5946-448d-8cfd-85599ab936c0">
