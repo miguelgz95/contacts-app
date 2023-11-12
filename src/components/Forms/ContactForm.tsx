@@ -1,27 +1,36 @@
+import ContactDetailsCard from "@components/Cards/ContactDetailsCard";
+import Label from "@components/Labels/Label";
 import React from "react";
-import { Control, Controller, FieldErrors } from "react-hook-form";
+import {
+    Control,
+    Controller,
+    FieldErrors,
+    FieldValues,
+    UseFormGetValues,
+} from "react-hook-form";
 
 interface ContactFormProps {
     control: Control<any, unknown>;
     errors: FieldErrors;
+    getValues: UseFormGetValues<any>;
 }
 
-export default function ContactForm({ control, errors }: ContactFormProps) {
+export default function ContactForm({
+    control,
+    errors,
+    getValues,
+}: ContactFormProps) {
     return (
-        <div className="w-full pt-3.5 pb-5">
-            <div className="w-full">
-                <label
-                    htmlFor="firstName"
-                    className="text-zinc-600 text-sm tracking-wider font-medium dark:text-white"
-                >
-                    Nombre
-                </label>
+        <div className="w-full pb-5">
+            {getValues().email && <ContactDetailsCard getValues={getValues} />}
+            <div className="w-full mt-3">
+                <Label htmlFor="firstName" label="Nombre" isRequired />
                 <div className="mt-2 md:mt-0">
                     <Controller
                         control={control}
                         name="firstName"
                         render={({ field: { onChange, value } }) => (
-                            <div className="flex items-center border pl-3 mt-1 h-7 rounded-lg tracking-wide  transition dark:bg-gray-600 dark:border-gray-600">
+                            <div className=" items-center border pl-3 mt-1 h-7 rounded-lg tracking-wide  transition dark:bg-gray-600 dark:border-gray-600">
                                 <input
                                     value={value}
                                     onChange={onChange}
@@ -40,12 +49,7 @@ export default function ContactForm({ control, errors }: ContactFormProps) {
                 </div>
             </div>
             <div className="w-full mt-3.5">
-                <label
-                    htmlFor="lastName"
-                    className="text-zinc-600 text-sm tracking-wider font-medium dark:text-white"
-                >
-                    Apellidos
-                </label>
+                <Label htmlFor="lastName" label="Apellidos" isRequired />
                 <div className=" mt-2 md:mt-0">
                     <Controller
                         control={control}
@@ -70,12 +74,7 @@ export default function ContactForm({ control, errors }: ContactFormProps) {
                 </div>
             </div>
             <div className="w-full mt-3.5">
-                <label
-                    htmlFor="email"
-                    className="text-zinc-600 text-sm tracking-wider font-medium dark:text-white"
-                >
-                    Correo electrónico
-                </label>
+                <Label htmlFor="email" label="Correo electrónico" isRequired />
                 <div className=" mt-2 md:mt-0">
                     <Controller
                         control={control}
@@ -100,12 +99,7 @@ export default function ContactForm({ control, errors }: ContactFormProps) {
                 </div>
             </div>
             <div className="w-full mt-3.5">
-                <label
-                    htmlFor="phone"
-                    className="text-zinc-600 text-sm tracking-wider font-medium dark:text-white"
-                >
-                    Número de teléfono
-                </label>
+                <Label htmlFor="phone" label="Número de contacto" isRequired />
                 <div className=" mt-2 md:mt-0">
                     <Controller
                         control={control}

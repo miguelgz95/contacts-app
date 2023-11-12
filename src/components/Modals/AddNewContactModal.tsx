@@ -38,6 +38,7 @@ export default function AddNewContactModal({
     const {
         handleSubmit: handleSubmitContact,
         control,
+        getValues,
         formState: { errors: formErrors },
         reset,
     } = useForm({
@@ -57,9 +58,9 @@ export default function AddNewContactModal({
         setLoading(true);
         createContact(values);
         toast.success(
-            <div className="flex items-center tracking widest font-semibold z-50">
+            <div className="flex items-center font-semibold z-50">
                 <BiSolidCheckCircle size={25} />
-                <p className="ml-3">¡Contacto creado!</p>
+                <p className="ml-3 tracking-wider">¡Contacto creado!</p>
             </div>
         );
         setLoading(false);
@@ -70,9 +71,9 @@ export default function AddNewContactModal({
         setLoading(true);
         updateContact(contactData, values);
         toast.success(
-            <div className="flex items-center tracking widest font-semibold z-50">
+            <div className="flex items-center font-semibold z-50">
                 <BiSolidCheckCircle size={25} />
-                <p className="ml-3">¡Contacto editado!</p>
+                <p className="ml-3 tracking-wider">¡Contacto editado!</p>
             </div>
         );
         setLoading(false);
@@ -162,6 +163,9 @@ export default function AddNewContactModal({
                                                     <div className="border-t border-slate-200" />
                                                     <div className="w-full flex flex-col md:flex-row justify-start mt-3 mb-4">
                                                         <ContactForm
+                                                            getValues={
+                                                                getValues
+                                                            }
                                                             control={control}
                                                             errors={formErrors}
                                                         />
@@ -196,6 +200,8 @@ export default function AddNewContactModal({
                                                         >
                                                             {loading ? (
                                                                 <Spinner />
+                                                            ) : contactData ? (
+                                                                "Editar"
                                                             ) : (
                                                                 "Guardar"
                                                             )}

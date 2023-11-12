@@ -17,14 +17,8 @@ const Home: NextPage = () => {
     const router = useRouter();
 
     const session = useSession();
-    const userName = session?.data?.user?.name || "";
 
-    const { fetchContacts, getContacts, getContactByEmail, deleteContact } =
-        useContacts();
-    const addToFavourites = useContacts().addToFavourites;
-    const deleteContactFromFavourites =
-        useContacts().deleteContactFromFavourites;
-    const favourites = useContacts().getFavourites();
+    const userName = session?.data?.user?.name || "";
 
     const [filter, setFilter] = useState<string>("");
     const [openContactModal, setOpenContactModal] = useState<boolean>(false);
@@ -34,9 +28,16 @@ const Home: NextPage = () => {
         (typeof TABLE_TYPES)[keyof typeof TABLE_TYPES]
     >(TABLE_TYPES.CONTACTS);
 
+    const { fetchContacts, getContacts, getContactByEmail, deleteContact } =
+        useContacts();
+    const addToFavourites = useContacts().addToFavourites;
+    const deleteContactFromFavourites =
+        useContacts().deleteContactFromFavourites;
+    const favourites = useContacts().getFavourites();
+    const contacts = getContacts(page, filter);
+
     const isSelectedFavouritesTable =
         selectedTableType === TABLE_TYPES.FAVOURITES;
-
     const isSelectedContactsTable = selectedTableType === TABLE_TYPES.CONTACTS;
 
     const handleChangeSelectedTableType = (
@@ -44,8 +45,6 @@ const Home: NextPage = () => {
     ) => {
         setSelectedTableType(tableType);
     };
-
-    const contacts = getContacts(page, filter);
 
     function editContact(email: string) {
         setEmail(email);

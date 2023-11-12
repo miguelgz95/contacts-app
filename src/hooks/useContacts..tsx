@@ -15,7 +15,7 @@ function useContacts() {
             fetch(url)
                 .then(result => result.json())
                 .then(data => {
-                    setState((state: any) => ({
+                    setState((state: Contact[]) => ({
                         ...state,
                         contacts: data.results,
                     }));
@@ -86,7 +86,7 @@ function useContacts() {
             return item;
         });
 
-        setState((state: any) => ({ contacts: newContacts, ...state }));
+        setState((state: Contact[]) => ({ contacts: newContacts, ...state }));
 
         navigate.push("/home");
     }
@@ -110,7 +110,7 @@ function useContacts() {
             },
         };
 
-        setState((state: { contacts: any }) => ({
+        setState((state: { contacts: Contact[] }) => ({
             ...state,
             contacts: [newContact, ...state.contacts],
         }));
