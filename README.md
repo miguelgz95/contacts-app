@@ -18,8 +18,10 @@ _To start the application: npm run dev_
 
 _Go to the browser and access the application: http://localhost:3000/_
 
-_Finally, enter the following credentials to log in_
+_Finally, enter the following credentials to log in:_
+
 _Username: A-SAFE DIGITAL_
+
 _Password: password_
 
 
