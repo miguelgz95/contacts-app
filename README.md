@@ -25,7 +25,7 @@ IMPORTANT: Once the application is started, you will need to authenticate with c
 ```
 openssl rand -base64 32
 ```
-Then copy and paste the generated code into the .env.local file as shown in the screenshot:
+Then copy and paste the generated code into the .env.local file as shown in the example screenshot:
 
 <img width="1017" alt="Captura de pantalla 2023-11-13 a las 0 11 25" src="https://github.com/miguelgz95/contacts-app/assets/90695378/fffed1e8-a96a-4310-87e6-37802373c56c">
 
